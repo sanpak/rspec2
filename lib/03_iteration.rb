@@ -181,6 +181,12 @@ class Array
   end
 
   def my_inject(&blk)
+    acc = self[0]
+    self.my_each do |num|
+      next if num == self[0]
+      acc = blk.call acc,num
+    end
+    return acc
   end
 end
 
@@ -194,4 +200,12 @@ end
 # ```
 
 def concatenate(strings)
+  # strings.inject do |acc, word|
+  #   if word == strings[-1]
+  #     acc = acc + "" + word
+  #   else
+  #     acc = acc + "" + word
+  #   end
+  # end
+  strings.inject(:+)
 end
