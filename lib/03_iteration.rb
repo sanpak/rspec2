@@ -141,6 +141,12 @@ end
 
 class Array
   def my_each(&prc)
+    counter = 0
+    while self.length > counter
+      prc.call self[counter]
+      counter += 1
+    end
+    return self
   end
 end
 
@@ -159,9 +165,15 @@ end
 
 class Array
   def my_map(&prc)
+    array = []
+    self.my_each do |num|
+      array.push(prc.call num)
+    end
+    return array
   end
 
   def my_select(&prc)
+    
   end
 
   def my_inject(&blk)
