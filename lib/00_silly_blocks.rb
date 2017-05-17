@@ -15,5 +15,12 @@ def adder n=0, &block
   end
 end
 
-def repeater
+def repeater n=0, &block
+  if n == 0
+    block.call
+  else
+    n.times do
+      block.call
+    end
+  end
 end

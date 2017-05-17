@@ -1,3 +1,9 @@
+#require 'byebug'
+def eval_block *p, &block
+  output = yield p
+end
+
+
 # ### `eval_block`
 #
 # Write an `eval_block` method that takes some arguments and a block. It should
