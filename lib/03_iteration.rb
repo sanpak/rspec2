@@ -4,6 +4,11 @@
 # factors of a given number.
 
 def factors(num)
+  result = []
+  (1..num).each do |n|
+    result << n if num % n == 0
+  end
+  result
 end
 
 # ### Bubble Sort
@@ -47,9 +52,26 @@ end
 
 class Array
   def bubble_sort!
+    if block_given?
+      #do something
+      (0...self.length).each do |idx1|
+        ((idx1+1)...self.length).each do |idx2|
+          self[idx1],self[idx2] = self[idx2],self[idx1] if yield(self[idx1],self[idx2]) == 1
+        end
+      end
+      return self
+    else
+      (0...self.length).each do |idx1|
+        ((idx1+1)...self.length).each do |idx2|
+          self[idx1],self[idx2] = self[idx2],self[idx1] if self[idx1] > self[idx2]
+        end
+      end
+      return self
+    end
   end
 
   def bubble_sort(&prc)
+    
   end
 end
 
