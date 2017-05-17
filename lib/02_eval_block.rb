@@ -1,6 +1,10 @@
 #require 'byebug'
-def eval_block *p, &block
-  output = yield p
+def eval_block *p
+  if block_given?
+    yield(*p)
+  else
+    raise "NO BLOCK"
+  end
 end
 
 
