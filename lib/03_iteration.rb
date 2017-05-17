@@ -173,7 +173,11 @@ class Array
   end
 
   def my_select(&prc)
-    
+    array = []
+    self.my_each do |num|
+      array.push(num) if prc.call num
+    end
+    return array
   end
 
   def my_inject(&blk)
