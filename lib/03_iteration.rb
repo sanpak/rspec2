@@ -71,7 +71,8 @@ class Array
   end
 
   def bubble_sort(&prc)
-    
+    duped_array = self.dup
+    duped_array.bubble_sort!
   end
 end
 
@@ -89,9 +90,22 @@ end
 # words).
 
 def substrings(string)
+  array = []
+  (0...string.length).each do |idx1|
+    (0...string.length).each do |idx2|
+      next if string[idx1..idx2] == ""
+      array << string[idx1..idx2]
+    end
+  end
+  return array
 end
 
 def subwords(word, dictionary)
+  array = []
+  dictionary.each do |dictionary_word|
+    array << dictionary_word if substrings(word).include?(dictionary_word)
+  end
+  return array
 end
 
 # ### Doubler
@@ -99,6 +113,7 @@ end
 # array with the original elements multiplied by two.
 
 def doubler(array)
+  array.map { |num| num * 2 }
 end
 
 # ### My Each
